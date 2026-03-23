@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Real-time drowsiness detection powered by computer vision and facial landmark analysis." />
+  <title>Drowsiness Detection — Live Monitor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <!-- Animated background shapes -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+        <h1>Drowsiness Detection</h1>
+      </div>
+      <p class="subtitle">Real-time eye tracking &amp; alerting system</p>
+    </header>
+
+    <!-- Main content -->
+    <main class="main">
+      <!-- Video card -->
+      <section class="card video-card" id="video-card">
+        <div class="card-header">
+          <span class="status-dot" id="status-dot"></span>
+          <span class="card-title" id="card-title">Live Feed</span>
+        </div>
+        <div class="video-wrapper">
+          <img id="video-feed" src="/video_feed" alt="Live webcam feed with drowsiness detection overlay" />
+          <!-- Alert overlay -->
+          <div class="alert-overlay" id="alert-overlay">
+            <div class="alert-content">
+              <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+              <span>DROWSINESS DETECTED</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Info panel -->
+      <aside class="card info-card">
+        <h2 class="info-title">Dashboard</h2>
+
+        <div class="stat-grid">
+          <div class="stat-item">
+            <span class="stat-label">Status</span>
+            <span class="stat-value" id="status-text">Monitoring…</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Alert Sound</span>
+            <span class="stat-value" id="sound-status">Ready</span>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <h3>How it works</h3>
+          <p>The system tracks your <strong>Eye Aspect Ratio (EAR)</strong> using 68 facial landmarks. When your eyes stay closed beyond a threshold, an alert is triggered.</p>
+        </div>
+
+        <div class="info-section">
+          <h3>Controls</h3>
+          <button class="btn" id="toggle-sound-btn">🔔 Mute Alarm</button>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <p>Powered by <strong>dlib</strong> &amp; <strong>OpenCV</strong> — Built with Flask</p>
+    </footer>
+  </div>
+
+  <!-- Hidden audio element for alarm -->
+  <audio id="alarm-audio" src="/static/alarm.mpeg" preload="auto" loop></audio>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
